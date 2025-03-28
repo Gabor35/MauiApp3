@@ -18,8 +18,12 @@ namespace MauiApp3.Models
 
         public string? Leiras { get; set; }
 
-        public string Kepurl { get; set; } = null!;
+        private string _kepurl = string.Empty;
 
+        public string Kepurl
+        {
+            get => _kepurl.Contains("http") ? _kepurl : $"http://files.esemenyrendezo.nhely.hu/Images/{_kepurl}";
+            set => _kepurl = value;
+        }
     }
-
 }

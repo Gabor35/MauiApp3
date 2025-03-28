@@ -1,0 +1,30 @@
+﻿@page "/logout"
+@using MauiApp3.Models
+@inject MauiApp3.Services.ApiService Api
+@inject NavigationManager Navigation
+
+<h3 class="text-center text-danger">Logout</h3>
+
+<div class="container mt-4 text-center">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="card shadow-lg p-4 rounded">
+                <div class="card-body">
+                    <p>Are you sure you want to log out?</p>
+                    <button class="btn btn-danger w-100" @onclick="Kijelentkeze">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private async Task Kijelentkeze()
+    {
+        var success = await Api.LogoutAsync(1); // A felhasználó ID-t dinamikusan kell kezelni
+        if (success)
+        {
+            Navigation.NavigateTo("/");
+        }
+    }
+}
